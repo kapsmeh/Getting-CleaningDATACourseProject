@@ -10,14 +10,12 @@ Condition<-"UCI HAR Dataset" dataset should be in working directory where run_an
 	Read the train data and test data, append them as row-wise using rbind. Similarly do the same 
 	for train and test label, now the total observation will be 10299.
 ##Step 2 
-	From "features.txt", manually find those features which are caculated based on mean and Standard deviation, which 
-	come out as 66. Now extract this subset(66 column) of data from the whole set(561 column).
+	Read "features.txt", find those feature indexes which have "mean()" and "std()" using grep, whose 
+	length come out as 66. Now extract this subset(66 column) of data from the whole set(561 column).
 ##Step 3 
 	Read "activity_labels.txt", mark all the 10299 observation (find above) activities in combined train 
 	and test label using the labels read from the file.
-##Step 4 
-	Read "features.txt", extract the names of 66 features from the indexes found in step 2
-##Step 5
+##Step 4
 	a.) Read the train and test data which contains subject information,similarly as in step 1, append them.
 	b.) Using "aggregate", find the average of each variable for each activity and each subject, now it contains 180
 		observations as there are 30 subjects and 6 activities.

@@ -1,5 +1,7 @@
-run_analysis<-function(path){
+run_analysis<-function(){
 
+	#relative Path of the Samsung data.
+	path="UCI HAR Dataset"
 	# 1. Merges the training and the test sets to create one data set.
 	##reading train data and train label
 	train_data<-read.table(paste(path,"train\\X_train.txt",sep="\\"),sep="")
@@ -17,15 +19,19 @@ run_analysis<-function(path){
 	
 	# 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 	#extracting the feature indexes of mean and standard deviation
-	indexes<-c(1:6,41:46,81:86,121:126,161:166,201:202,214:215,227:228,240:241,253:254,266:271,345:350,424:429,503:504,516:517,529:530,542:543)	
+	# 4. Appropriately labels the data set with descriptive activity names.
+	features<-read.table(paste(path,"features.txt",sep="\\"),sep="")[,2]
+	x1<-grep("mean()",as.character(features),fixed=TRUE)
+	x2<-grep("std()",as.character(features),fixed=TRUE)
+	indexes<-sort(rbind(x1,x2))
 	data<-whole_data[,indexes]
 	
 	# 3. Uses descriptive activity names to name the activities in the data set
 	activity<-read.table(paste(path,"activity_labels.txt",sep="\\"),sep="")
 	activity_names<-factor(whole_label[,1],labels=activity[,2])
 
-	# 4. Appropriately labels the data set with descriptive activity names. 
-	features<-read.table(paste(path,"features.txt",sep="\\"),sep="")[,2]
+	 
+	
 	
 
 	# 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
