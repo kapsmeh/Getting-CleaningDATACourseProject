@@ -19,7 +19,6 @@ run_analysis<-function(){
 	
 	# 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 	#extracting the feature indexes of mean and standard deviation
-	# 4. Appropriately labels the data set with descriptive activity names.
 	features<-read.table(paste(path,"features.txt",sep="\\"),sep="")[,2]
 	x1<-grep("mean()",as.character(features),fixed=TRUE)
 	x2<-grep("std()",as.character(features),fixed=TRUE)
@@ -30,11 +29,7 @@ run_analysis<-function(){
 	activity<-read.table(paste(path,"activity_labels.txt",sep="\\"),sep="")
 	activity_names<-factor(whole_label[,1],labels=activity[,2])
 
-	 
-	
-	
-
-	# 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+	# 4. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 	subject_train<-read.table(paste(path,"train\\subject_train.txt",sep="\\"),sep="")
 	subject_test<-read.table(paste(path,"test\\subject_test.txt",sep="\\"),sep="")
 	#merging train and test subjects
